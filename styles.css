@@ -7,3 +7,19 @@ img {
   width: 200px;
   object-fit: cover;
 }
+
+.east {
+  transform: rotate();
+}
+
+.south {
+  transform: rotate(-0.25);
+}
+
+.west {
+  transform: rotate(0.5);
+}
+
+.north {
+  transform: rotate(0.25);
+}
