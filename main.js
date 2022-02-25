@@ -1,5 +1,15 @@
-var $car = document.querySelector('.car');
+var $car = document.getElementById('car');
 
-$car.addEventListener('click', function () {
+addEventListener('keydown', rotateCar);
 
-});
+function rotateCar(event) {
+  if (event.key === 'ArrowRight') {
+    $car.className = 'east';
+  } else if (event.key === 'ArrowUp') {
+    $car.className = 'south';
+  } else if (event.key === 'ArrowLeft') {
+    $car.className = 'west';
+  } else if (event.key === 'ArrowDown') {
+    $car.className = 'north';
+  }
+}
