@@ -1,3 +1,6 @@
+/* global data */
+/* exported data */
+
 var $car = document.getElementById('car');
 
 addEventListener('keydown', rotateCar);
