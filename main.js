@@ -4,12 +4,12 @@ addEventListener('keydown', rotateCar);
 
 function rotateCar(event) {
   if (event.key === 'ArrowRight') {
-    $car.className = 'east';
+    $car.className = 'right';
   } else if (event.key === 'ArrowUp') {
-    $car.className = 'south';
+    $car.className = 'up';
   } else if (event.key === 'ArrowLeft') {
-    $car.className = 'west';
+    $car.className = 'left';
   } else if (event.key === 'ArrowDown') {
-    $car.className = 'north';
+    $car.className = 'down';
   }
 }
