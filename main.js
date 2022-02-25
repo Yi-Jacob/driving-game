@@ -16,3 +16,11 @@ function rotateCar(event) {
     $car.className = 'down';
   }
 }
+
+addEventListener('keydown', startCar);
+
+function startCar(event) {
+  if (event.key === 'Space') {
+    // console.log('test');
+  }
+}
