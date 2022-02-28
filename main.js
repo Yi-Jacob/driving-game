@@ -1,3 +1,7 @@
+// eslint-disable-next-line no-redeclare
+/* global data */
+/* exported data */
+
 var $car = document.getElementById('car');
 
 addEventListener('keydown', rotateCar);
@@ -12,4 +16,27 @@ function rotateCar(event) {
   } else if (event.key === 'ArrowDown') {
     $car.className = 'down';
   }
+}
+
+addEventListener('keydown', startCar);
+
+addEventListener('keydown', handleStart);
+
+var data = {
+  location: {
+    top: 0,
+    left: 0
+  }
+};
+
+function handleStart(event) {
+  if (event.key === ' ') {
+    setInterval(startCar, 16);
+  }
+}
+var start = 0;
+function startCar() {
+  start += 3;
+  $car.style.left = start + 'px';
+  data.location.left = start;
 }
