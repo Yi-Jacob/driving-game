@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-redeclare
 /* global data */
 /* exported data */
 
@@ -19,8 +20,23 @@ function rotateCar(event) {
 
 addEventListener('keydown', startCar);
 
-function startCar(event) {
-  if (event.key === 'Space') {
-    // console.log('test');
+addEventListener('keydown', handleStart);
+
+var data = {
+  location: {
+    top: 0,
+    left: 0
   }
+};
+
+function handleStart(event) {
+  if (event.key === ' ') {
+    setInterval(startCar, 16);
+  }
+}
+var start = 0;
+function startCar() {
+  start += 3;
+  $car.style.left = start + 'px';
+  data.location.left = start;
 }
