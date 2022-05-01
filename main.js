@@ -2,41 +2,58 @@
 /* global data */
 /* exported data */
 
-var $car = document.getElementById('car');
+var $image = document.querySelector('.car-right');
+var shiftPressed = false;
+var intervalID;
 
-addEventListener('keydown', rotateCar);
+var topCount = 0;
+var leftCount = 0;
 
-function rotateCar(event) {
-  if (event.key === 'ArrowRight') {
-    $car.className = 'right';
-  } else if (event.key === 'ArrowUp') {
-    $car.className = 'up';
-  } else if (event.key === 'ArrowLeft') {
-    $car.className = 'left';
+function moveDirection(event) {
+  if (event.key === 'ArrowUp') {
+    $image.setAttribute('class', 'car-up');
   } else if (event.key === 'ArrowDown') {
-    $car.className = 'down';
+    $image.setAttribute('class', 'car-down');
+  } else if (event.key === 'ArrowLeft') {
+    $image.setAttribute('class', 'car-left');
+
+  } else if (event.key === 'ArrowRight') {
+    $image.setAttribute('class', 'car-right');
+
+  }
+
+}
+
+document.addEventListener('keydown', moveDirection);
+
+function listenForShift(event) {
+  if (event.code === 'Space') {
+    if (shiftPressed === false) {
+      intervalID = setInterval(moveCar, 16);
+      shiftPressed = true;
+    } else {
+      clearInterval(intervalID);
+      shiftPressed = false;
+    }
   }
 }
 
-addEventListener('keydown', startCar);
+document.addEventListener('keypress', listenForShift);
 
-addEventListener('keydown', handleStart);
+function moveCar(event) {
+  if ($image.getAttribute('class') === 'car-right') {
+    leftCount += 5;
+    $image.setAttribute('style', 'top:' + topCount.toString() + 'px; ' + 'left:' + leftCount.toString() + 'px');
+  } else if ($image.getAttribute('class') === 'car-left') {
+    leftCount -= 5;
+    $image.setAttribute('style', 'top:' + topCount.toString() + 'px; ' + 'left:' + leftCount.toString() + 'px');
+  } else if ($image.getAttribute('class') === 'car-up') {
+    topCount -= 5;
+    $image.setAttribute('style', 'top:' + topCount.toString() + 'px; ' + 'left:' + leftCount.toString() + 'px');
+  } else if ($image.getAttribute('class') === 'car-down') {
+    topCount += 5;
+    $image.setAttribute('style', 'top:' + topCount.toString() + 'px; ' + 'left:' + leftCount.toString() + 'px');
 
-var data = {
-  location: {
-    top: 0,
-    left: 0
   }
-};
 
-function handleStart(event) {
-  if (event.key === ' ') {
-    setInterval(startCar, 16);
-  }
-}
-var start = 0;
-function startCar() {
-  start += 3;
-  $car.style.left = start + 'px';
-  data.location.left = start;
 }
